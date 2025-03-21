@@ -2,9 +2,15 @@ from sqlalchemy.exc import IntegrityError
 from conexao_orm import Base, engine, session
 from user import User
 from post import Post
+import re
 
 #Cria as tabelas
 Base.metadata.create_all(engine)
+
+#Função para validar email
+def is_email_valid(email):
+    pattern = r"^[a-zA-Z0-9_.+-]+@[a-zA-Z0-9-]+\.[a-zA-Z0-9-.]+$"
+    return re.match(pattern, email)
 
 #Função para exibir o menu de opções
 def show_menu():
@@ -18,7 +24,13 @@ def show_menu():
 def add_user():
     print("Adicionar novo usuário")
     name = input("Nome:\n")
+    if not name:
+        print("O nome não pode ser vazio")
+        return
     email = input("Email:\n")
+    if not is_email_valid(email):
+        print("Erro: E-mail inválido.")
+        return
     user = User(name, email) #Instancia a classe User que criamos com os atributos passados pelo usuário
     try:
         session.add(user) #Adiciona o usuário no banco de dados (sem comandos SQL)
@@ -37,7 +49,13 @@ def add_post():
     print("Adicionar novo post:")
     title = input("Título:\n")
     content = input("Conteúdo:\n")
+    if not title.strip() or not content.strip():
+        print("Erro: Título e Conteúdo não podem estar vazios.")
+        return
     author_id = input("Id do Autor:\n")
+    if not author_id.isdigit():
+        print("O ID do autor deve ser um número.")
+        return
     try:
         user = session.query(User).filter_by(id=author_id).first() #Verifica na tabela se o id passado pelo usuário em author_id existe
         if user:
