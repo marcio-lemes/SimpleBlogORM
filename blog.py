@@ -49,7 +49,13 @@ def add_post():
     print("Adicionar novo post:")
     title = input("Título:\n")
     content = input("Conteúdo:\n")
+    if not title.strip() or not content.strip():
+        print("Erro: Título e Conteúdo não podem estar vazios.")
+        return
     author_id = input("Id do Autor:\n")
+    if not author_id.isdigit():
+        print("O ID do autor deve ser um número.")
+        return
     try:
         user = session.query(User).filter_by(id=author_id).first() #Verifica na tabela se o id passado pelo usuário em author_id existe
         if user:
