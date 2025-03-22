@@ -28,7 +28,8 @@ Este projeto é um sistema de blog simples que utiliza **SQLAlchemy** como ORM (
 ## **Requisitos**  
 Para executar este projeto, você precisará ter instalado:  
 - Python 3.x  
-- Biblioteca `SQLAlchemy` (`pip install sqlalchemy`)  
+- Biblioteca `SQLAlchemy` (`pip install sqlalchemy`)
+- Biblioteca `psycopg2` (`pip install psycopg2`)  
 - PostgreSQL rodando localmente.  
 
 ---
@@ -41,7 +42,7 @@ Para executar este projeto, você precisará ter instalado:
 
 2. Instale as dependências:  
    ```bash
-   pip install sqlalchemy
+   pip install sqlalchemy psycopg2
 
 3. Configure o banco de dados PostgreSQL:
 - Crie um banco de dados chamado **blog**;
