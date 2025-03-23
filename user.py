@@ -10,6 +10,6 @@ class User(Base):
     email = Column(String)
     posts = relationship('Post', back_populates='author') #Relacionamento com a classe "Post". 'back_populates=author' indica que a classe "Post" terá um atributo chamado 'author' que se relaciona com esta classe 'User'
     
-    def __init__(self, name, email):
+    def __init__(self, name, email): #Método construtor, faz com que esses atributos (name, email) devam ser passados como parâmetro na hora da criação do objeto dessa classe
         self.name = name
         self.email = email

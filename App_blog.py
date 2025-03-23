@@ -4,7 +4,7 @@ while True:
     show_menu()
     try:
         option = int(input("Selecione uma opção:\n"))
-    except ValueError:
+    except ValueError: #Caso o usuário digitar algo que não seja um número, retorna a mensagem de erro
         print("Entrada deve ser um número.")
         continue
     
